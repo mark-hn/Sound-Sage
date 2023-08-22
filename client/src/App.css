@@ -1,0 +1,37 @@
+body {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+h1 {
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.artist-text {
+  margin-left: 15px;
+  text-align: left;
+}
+
+.artist-button {
+  padding: 1%;
+  cursor: pointer;
+  max-width: 75%;
+  transition: all 0.1s ease-out;
+}
+
+.artist-button:hover {
+  padding: 1%;
+  background-color: #444851;
+}
