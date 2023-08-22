@@ -7,3 +7,5 @@ Instructions:
 3. Navigate the second terminal to ./client using the command ```cd client```. Then, run ```npm start```.
 4. You should see a web page open in your browser. Click the button ```Login with Spotify```, then use the bottom naviagtion bar to view your top artists and AI-recommended artists.
    Note: generating your recommended artists may take a few seconds.
+
+Note: If your Spotify account is new or you have not used it frequently in the past 6 months, the Spotify web API may be unable to obtain your top artists.
