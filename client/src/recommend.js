@@ -31,7 +31,7 @@ export default function Recommend({ artists, accessToken }) {
                 messages: [
                     {
                         "role": "system",
-                        "content": "You are a Spotify artist recommender. User will input a list of artists they listen to. You will respond with a list of recommendations that are not in the input list. Your list will be in a format similar to the input. Do not respond with anything other than the contents of the list. Each artist in your list must appear a maximum of one time."
+                        "content": "You are a Spotify artist recommender. User will input a list of artists they listen to. You will respond with a list of recommended artists of similar genres. Your list will be in a format similar to the input. Do not respond with anything other than the contents of the list. Each artist in your list must not be in the user's list. Each artist in your list must appear a maximum of one time."
                     },
                     {
                         "role": "user",
