@@ -98,8 +98,18 @@ export default function Dashboard({ code }) {
                         setView(newView);
                     }}
                 >
-                    <BottomNavigationAction sx={{ marginRight: '10%', color: '#dcffff' }} label="Top Artists" icon={<ListIcon />} />
-                    <BottomNavigationAction sx={{ marginLeft: '10%', color: '#dcffff' }} label="Recommended Artists" icon={<QueueMusicIcon />} />
+                    <BottomNavigationAction sx={[
+                        { marginRight: '10%', color: '#dcffff' },
+                        () => ({
+                            '&:hover': { backgroundColor: '#2f2d38', transition: 'all 0.15s ease-out' }
+                        })
+                    ]} label="Top Artists" icon={<ListIcon />} />
+                    <BottomNavigationAction sx={[
+                        { marginLeft: '10%', color: '#dcffff' },
+                        () => ({
+                            '&:hover': { backgroundColor: '#2f2d38', transition: 'all 0.15s ease-out' }
+                        })
+                    ]} label="Recommended Artists" icon={<QueueMusicIcon />} />
                 </BottomNavigation>
             </Paper>
         </>
