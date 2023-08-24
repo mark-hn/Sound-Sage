@@ -93,7 +93,7 @@ export default function Recommend({ artists, accessToken }) {
                 </div>
             )}
 
-            {recommendationsData.length != 0 && (
+            {recommendationsData.length !== 0 && (
                 <div>
                     <center>
                         <h1>Here are your recommended artists:</h1>

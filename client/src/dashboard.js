@@ -69,7 +69,7 @@ export default function Dashboard({ code }) {
                         </center>
                     )}
 
-                    {topArtistData.length != 0 && (
+                    {topArtistData.length !== 0 && (
                         <>
                             <center><h1>Here are your top artists ranked by calculated affinity:</h1></center>
                             <div>
