@@ -4,6 +4,7 @@ import config from './config.json';
 import Artist from './artist';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './App.css'
+import { Container } from 'react-bootstrap'
 
 
 export default function Recommend({ artists, accessToken }) {
@@ -16,7 +17,7 @@ export default function Recommend({ artists, accessToken }) {
 
     const API_KEY = config.CHIMERA_API_KEY;
 
-    useEffect(() => {
+    if (recommendationsData.length === 0) {
         let artistLst = [];
         artists.map(item => (
             artistLst.push(item.name)
@@ -30,7 +31,7 @@ export default function Recommend({ artists, accessToken }) {
                 messages: [
                     {
                         "role": "system",
-                        "content": "You are a Spotify artist recommender. User will input a list of artists they listen to. You will respond with a list of recommendations that are not in the input list. Your list will be in a format similar to the input. Do not respond with anything other than the contents of the list. Ensure that each artist in your list only appears one time."
+                        "content": "You are a Spotify artist recommender. User will input a list of artists they listen to. You will respond with a list of recommendations that are not in the input list. Your list will be in a format similar to the input. Do not respond with anything other than the contents of the list. Each artist in your list must appear a maximum of one time."
                     },
                     {
                         "role": "user",
@@ -73,14 +74,14 @@ export default function Recommend({ artists, accessToken }) {
         }).catch((err) => {
             console.log(err);
         });
-    }, [artists]);
+    }
 
 
     useEffect(() => {
         localStorage.setItem("ITEMS", JSON.stringify(recommendationsData));
     }, [recommendationsData]);
 
-    
+
     return (
         <div>
             {recommendationsData.length === 0 && (
@@ -94,7 +95,19 @@ export default function Recommend({ artists, accessToken }) {
 
             {recommendationsData.length != 0 && (
                 <div>
-                    <center><h1>Here are your recommended artists:</h1></center>
+                    <center>
+                        <h1>Here are your recommended artists:</h1>
+
+                        <Container>
+                            <a className='btn btn-success btn-lg' onClick={() => {
+                                localStorage.setItem("ITEMS", null);
+                                setRecommendationsData([]);
+                            }}>
+                                Regenerate recommendations
+                            </a>
+                        </Container>
+                    </center>
+
                     {recommendationsData.map(item => (
                         <Artist artist={item} key={item.url} />
                     ))}
