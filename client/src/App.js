@@ -10,7 +10,7 @@ export default function Home() {
   return code ? <Dashboard code={code} /> : <>
     <body>
       <header>
-        <h1 className="text-2xl"><center>Sound Sage AI</center></h1>
+        <h1 className="text-2xl" style={{marginBottom: '-0.75%'}}><center>Sound Sage AI</center></h1>
         <h2><center>An AI-powered Spotify artist recommender</center></h2>
         <center><Login /></center>
       </header>

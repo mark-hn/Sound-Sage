@@ -3,6 +3,7 @@ import axios from 'axios';
 import config from './config.json';
 import Artist from './artist';
 import ClipLoader from 'react-spinners/ClipLoader';
+import './App.css'
 
 
 export default function Recommend({ artists, accessToken }) {
@@ -74,7 +75,7 @@ export default function Recommend({ artists, accessToken }) {
         <div>
             {recommendationsData.length === 0 && (
                 <div>
-                    <center><h1 style={{ padding: '1%' }}>Generating recommendations...</h1></center>
+                    <center><h1>Generating recommendations...</h1></center>
                     <center className="loader-container">
                         <ClipLoader color={'#fff'} size={75} />
                     </center>
@@ -83,7 +84,7 @@ export default function Recommend({ artists, accessToken }) {
 
             {recommendationsData.length != 0 && (
                 <div>
-                    <center><h1 style={{ padding: '1%' }}>Here are your recommended artists:</h1></center>
+                    <center><h1>Here are your recommended artists:</h1></center>
                     {recommendationsData.map(item => (
                         <Artist artist={item} key={item.url} />
                     ))}

@@ -62,13 +62,24 @@ export default function Dashboard({ code }) {
         <>
             {view === 0 && (
                 <div>
-                    <center><h1 style={{ padding: '1%' }}>Here are your top artists ranked by calculated affinity:</h1></center>
-                    <div>
-                        {topArtistData.map(item => (
-                            <Artist artist={item} key={item.url} />
-                        ))}
-                    </div>
-                    <br /><br />
+                    {topArtistData.length === 0 && (
+                        <center>
+                            <h1>Unable to obtain your top artists</h1>
+                            <h2>Your Spotify account may be new or unfrequently used in the past 6 months</h2>
+                        </center>
+                    )}
+
+                    {topArtistData.length != 0 && (
+                        <>
+                            <center><h1>Here are your top artists ranked by calculated affinity:</h1></center>
+                            <div>
+                                {topArtistData.map(item => (
+                                    <Artist artist={item} key={item.url} />
+                                ))}
+                            </div>
+                            <br /><br />
+                        </>
+                    )}
                 </div>
             )}
 
