@@ -8,7 +8,11 @@ import './App.css'
 
 export default function Recommend({ artists, accessToken }) {
 
-    const [recommendationsData, setRecommendationsData] = useState([]);
+    const [recommendationsData, setRecommendationsData] = useState(() => {
+        const localValue = localStorage.getItem("ITEMS");
+        if (localValue == null) return [];
+        return JSON.parse(localValue);
+    });
 
     const API_KEY = config.CHIMERA_API_KEY;
 
@@ -71,6 +75,12 @@ export default function Recommend({ artists, accessToken }) {
         });
     }, [artists]);
 
+
+    useEffect(() => {
+        localStorage.setItem("ITEMS", JSON.stringify(recommendationsData));
+    }, [recommendationsData]);
+
+    
     return (
         <div>
             {recommendationsData.length === 0 && (
