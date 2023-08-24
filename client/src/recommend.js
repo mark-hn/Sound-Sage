@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import config from './config.json';
 import Artist from './artist';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 
 export default function Recommend({ artists, accessToken }) {
@@ -24,7 +25,7 @@ export default function Recommend({ artists, accessToken }) {
                 messages: [
                     {
                         "role": "system",
-                        "content": "You are a Spotify artist recommender. User will input a list of artists they listen to. You will respond with a list of recommendations that are not in the input list. Your list will be in a format similar to the input. Do not respond with anything other than the contents of the list. Your list should not have any duplicates."
+                        "content": "You are a Spotify artist recommender. User will input a list of artists they listen to. You will respond with a list of recommendations that are not in the input list. Your list will be in a format similar to the input. Do not respond with anything other than the contents of the list. Ensure that each artist in your list only appears one time."
                     },
                     {
                         "role": "user",
@@ -63,7 +64,6 @@ export default function Recommend({ artists, accessToken }) {
             }
             search().then(() => {
                 setRecommendationsData(data);
-                console.log(recommendationsData);
             })
         }).catch((err) => {
             console.log(err);
@@ -72,12 +72,24 @@ export default function Recommend({ artists, accessToken }) {
 
     return (
         <div>
-            <div>
-                {recommendationsData.map(item => (
-                    <Artist artist={item} key={item.url} />
-                ))}
-            </div>
-            <br /><br />
+            {recommendationsData.length === 0 && (
+                <div>
+                    <center><h1 style={{ padding: '1%' }}>Generating recommendations...</h1></center>
+                    <center className="loader-container">
+                        <ClipLoader color={'#fff'} size={75} />
+                    </center>
+                </div>
+            )}
+
+            {recommendationsData.length != 0 && (
+                <div>
+                    <center><h1 style={{ padding: '1%' }}>Here are your recommended artists:</h1></center>
+                    {recommendationsData.map(item => (
+                        <Artist artist={item} key={item.url} />
+                    ))}
+                    <br /><br />
+                </div>
+            )}
         </div>
     )
 }

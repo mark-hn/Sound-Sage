@@ -74,7 +74,6 @@ export default function Dashboard({ code }) {
 
             {view === 1 && (
                 <div>
-                    <center><h1 style={{ padding: '1%' }}>Here are your recommended artists:</h1></center>
                     <Recommend artists={topArtistData} accessToken={accessToken} />
                 </div>
             )}
