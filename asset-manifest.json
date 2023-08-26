@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Sound-Sage-AI/static/css/main.ecb24004.css",
-    "main.js": "/Sound-Sage-AI/static/js/main.4a5f57c9.js",
+    "main.js": "/Sound-Sage-AI/static/js/main.db21a0ba.js",
     "index.html": "/Sound-Sage-AI/index.html",
     "main.ecb24004.css.map": "/Sound-Sage-AI/static/css/main.ecb24004.css.map",
-    "main.4a5f57c9.js.map": "/Sound-Sage-AI/static/js/main.4a5f57c9.js.map"
+    "main.db21a0ba.js.map": "/Sound-Sage-AI/static/js/main.db21a0ba.js.map"
   },
   "entrypoints": [
     "static/css/main.ecb24004.css",
-    "static/js/main.4a5f57c9.js"
+    "static/js/main.db21a0ba.js"
   ]
 }
