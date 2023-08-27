@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const config = require('D:/sound-sage-ai/client/src/config.json');
+const config = require('./config.json');
 
 
 // Refresh the access token using token obtained from the client
