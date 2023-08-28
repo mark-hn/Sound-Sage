@@ -12,48 +12,54 @@ import { Paper } from '@mui/material';
 import ListIcon from '@mui/icons-material/List';
 import QueueMusicIcon from '@mui/icons-material/QueueMusic';
 
-import config from './config.json';
+import axios from 'axios';
 
-
-const spotifyApi = new SpotifyWebApi({
-    redirectUri: config.REDIRECT_URI,
-    clientId: config.CLIENT_ID,
-    clientSecret: config.CLIENT_SECRET
-});
 
 export default function Dashboard({ code }) {
-    const accessToken = useAuth(code);
     const [topArtistData, setTopArtistData] = useState([]);
-
     const [view, setView] = useState(0);
+
+    const accessToken = useAuth(code);
 
     useEffect(() => {
         if (!accessToken) return;
-        spotifyApi.setAccessToken(accessToken);
 
-        const params = {
-            time_range: "medium_term",
-            limit: 20,
-            offset: 0
-        };
+        axios
+            .get("http://localhost:3001/secrets")
+            .then(response => {
+                const secrets = response.data;
+                const spotifyApi = new SpotifyWebApi({
+                    redirectUri: secrets.REDIRECT_URI,
+                    clientId: secrets.CLIENT_ID,
+                    clientSecret: secrets.CLIENT_SECRET
+                });
 
-        spotifyApi.getMyTopArtists(params).then((res) => {
-            setTopArtistData(res.body.items.map(item => {
-                const smallestImg = item.images.reduce((smallest, img) => {
-                    if (img.height < smallest.height) return img;
-                    return smallest;
-                })
+                spotifyApi.setAccessToken(accessToken);
 
-                return {
-                    name: item.name,
-                    url: item.external_urls.spotify,
-                    genres: item.genres,
-                    image: smallestImg.url
-                }
-            }));
-        }).catch(err => {
-            console.log(err);
-        });
+                const params = {
+                    time_range: "medium_term",
+                    limit: 20,
+                    offset: 0
+                };
+
+                spotifyApi.getMyTopArtists(params).then((res) => {
+                    setTopArtistData(res.body.items.map(item => {
+                        const smallestImg = item.images.reduce((smallest, img) => {
+                            if (img.height < smallest.height) return img;
+                            return smallest;
+                        })
+
+                        return {
+                            name: item.name,
+                            url: item.external_urls.spotify,
+                            genres: item.genres,
+                            image: smallestImg.url
+                        }
+                    }));
+                }).catch(err => {
+                    console.log(err);
+                });
+            });
     }, [accessToken]);
 
     if (topArtistData.length === 0) return;

@@ -9,8 +9,13 @@ app.use(bodyParser.json());
 
 const config = require('./config.json');
 
+// Obtain secrets from ./config.json within the server
+app.get('/secrets', (req, res) => {
+    res.json(config);
+});
 
-// Refresh the access token using token obtained from the client
+
+// Refresh the access token using refresh token obtained from the client
 app.post('/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken;
 
