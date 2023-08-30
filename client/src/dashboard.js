@@ -25,40 +25,9 @@ export default function Dashboard({ code }) {
         if (!accessToken) return;
 
         axios
-            .get("http://localhost:3001/secrets")
-            .then(response => {
-                const secrets = response.data;
-                const spotifyApi = new SpotifyWebApi({
-                    redirectUri: secrets.REDIRECT_URI,
-                    clientId: secrets.CLIENT_ID,
-                    clientSecret: secrets.CLIENT_SECRET
-                });
-
-                spotifyApi.setAccessToken(accessToken);
-
-                const params = {
-                    time_range: "medium_term",
-                    limit: 20,
-                    offset: 0
-                };
-
-                spotifyApi.getMyTopArtists(params).then((res) => {
-                    setTopArtistData(res.body.items.map(item => {
-                        const smallestImg = item.images.reduce((smallest, img) => {
-                            if (img.height < smallest.height) return img;
-                            return smallest;
-                        })
-
-                        return {
-                            name: item.name,
-                            url: item.external_urls.spotify,
-                            genres: item.genres,
-                            image: smallestImg.url
-                        }
-                    }));
-                }).catch(err => {
-                    console.log(err);
-                });
+            .post("http://localhost:3001/top", { access_token: accessToken })
+            .then(res => {
+                setTopArtistData(res.data);
             });
     }, [accessToken]);
 
