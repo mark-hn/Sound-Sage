@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 const config = require('./config.json');
 
+
 // Obtain secrets from ./config.json within the server
 app.get('/url', (req, res) => {
     res.json({
