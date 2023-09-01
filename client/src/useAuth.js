@@ -17,10 +17,10 @@ export default function useAuth(code) {
                 setAccessToken(res.data.accessToken);
                 setRefreshToken(res.data.refreshToken);
                 setExpiresIn(res.data.expiresIn);
-                window.history.pushState({}, null, '/');
+                window.history.pushState({}, null, '/Sound-Sage-AI/');
             })
             .catch(() => {
-                window.location = '/';
+                window.location = '/Sound-Sage-AI/';
             })
     }, [code])
 
@@ -38,7 +38,7 @@ export default function useAuth(code) {
                     setExpiresIn(res.data.expiresIn);
                 })
                 .catch(() => {
-                    window.location = '/';
+                    window.location = '/Sound-Sage-AI/';
                 })
         }, (expiresIn - 60) * 1000);
 
