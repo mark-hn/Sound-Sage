@@ -25,7 +25,7 @@ export default function Dashboard({ code }) {
         if (!accessToken) return;
 
         axios
-            .post("https://sound-sage-ai.onrender.com:3001/top", { access_token: accessToken })
+            .post("https://sound-sage-ai.onrender.com/top", { access_token: accessToken })
             .then(res => {
                 setTopArtistData(res.data);
             });

@@ -10,7 +10,7 @@ export default function useAuth(code) {
     // Post the access/refresh token and expiration date to the server
     useEffect(() => {
         axios
-            .post("https://sound-sage-ai.onrender.com:3001/login", {
+            .post("https://sound-sage-ai.onrender.com/login", {
                 code,
             })
             .then(res => {
@@ -30,7 +30,7 @@ export default function useAuth(code) {
         const interval = setInterval(() => {
 
             axios
-                .post("https://sound-sage-ai.onrender.com:3001/refresh", {
+                .post("https://sound-sage-ai.onrender.com/refresh", {
                     refreshToken,
                 })
                 .then(res => {
