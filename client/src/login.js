@@ -9,6 +9,8 @@ export default function Login() {
         .get("https://sound-sage-ai.onrender.com:3001/url")
         .then(res => {
             setAUTH_URL(`https://accounts.spotify.com/authorize?client_id=${res.data.CLIENT_ID}&response_type=code&redirect_uri=${res.data.REDIRECT_URI}&scope=user-top-read`);
+        }).catch(err => {
+            console.error(err);
         });
 
     return (
