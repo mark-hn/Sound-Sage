@@ -8,14 +8,15 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const config = require('./config.json');
+const dotenv = require('dotenv');
+dotenv.config();
 
 
-// Obtain secrets from ./config.json within the server
+// Obtain secrets from .env within the server
 app.get('/url', (req, res) => {
     res.json({
-        CLIENT_ID: config.CLIENT_ID,
-        REDIRECT_URI: config.REDIRECT_URI
+        CLIENT_ID: process.env.CLIENT_ID,
+        REDIRECT_URI: process.env.REDIRECT_URI
     });
 });
 
@@ -25,9 +26,9 @@ app.post('/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken;
 
     const spotifyAPI = new SpotifyWebApi({
-        redirectUri: config.REDIRECT_URI,
-        clientId: config.CLIENT_ID,
-        clientSecret: config.CLIENT_SECRET,
+        redirectUri: process.env.REDIRECT_URI,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
         refreshToken: refreshToken
     });
 
@@ -50,9 +51,9 @@ app.post('/refresh', (req, res) => {
 app.post('/login', function (req, res) {
     const code = req.body.code;
     const spotifyAPI = new SpotifyWebApi({
-        redirectUri: config.REDIRECT_URI,
-        clientId: config.CLIENT_ID,
-        clientSecret: config.CLIENT_SECRET
+        redirectUri: process.env.REDIRECT_URI,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET
     });
 
     spotifyAPI.authorizationCodeGrant(code)
@@ -72,9 +73,9 @@ app.post('/login', function (req, res) {
 // Obtain top artists
 app.post('/top', function (req, res) {
     const spotifyApi = new SpotifyWebApi({
-        redirectUri: config.REDIRECT_URI,
-        clientId: config.CLIENT_ID,
-        clientSecret: config.CLIENT_SECRET
+        redirectUri: process.env.REDIRECT_URI,
+        clientId: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET
     });
 
     spotifyApi.setAccessToken(req.body.access_token);
@@ -130,7 +131,7 @@ app.post('/recommend', function (req, res) {
         {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${config.CHIMERA_API_KEY}`
+                Authorization: `Bearer ${process.env.CHIMERA_API_KEY}`
             }
         }
     ).then((response) => {
@@ -169,4 +170,4 @@ app.post('/recommend', function (req, res) {
 })
 
 
-app.listen(3001);
+app.listen(process.env.PORT || 3001);

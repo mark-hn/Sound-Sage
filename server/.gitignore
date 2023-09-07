@@ -22,3 +22,4 @@ yarn-error.log*
 
 # confidential information
 /config.json
+.env
