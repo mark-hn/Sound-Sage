@@ -21,7 +21,7 @@ export default function Recommend({ artists, accessToken }) {
         const artistStr = artistLst.join(", ");
 
         axios
-            .post("http://localhost:3001/recommend", { artist_str: artistStr, access_token: accessToken })
+            .post("https://sound-sage-ai.onrender.com:3001/recommend", { artist_str: artistStr, access_token: accessToken })
             .then(res => {
                 setRecommendationsData(res.data.data);
             });
