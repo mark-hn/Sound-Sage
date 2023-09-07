@@ -31,7 +31,7 @@ export default function Dashboard({ code }) {
             });
     }, [accessToken]);
 
-    if (topArtistData.length === 0) return;
+    // if (topArtistData.length === 0) return;
 
     return (
         <>
