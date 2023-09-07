@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 
 // Obtain secrets from .env within the server
 app.get('/url', (req, res) => {
-    console.log('test');
     res.json({
         CLIENT_ID: process.env.CLIENT_ID,
         REDIRECT_URI: process.env.REDIRECT_URI
