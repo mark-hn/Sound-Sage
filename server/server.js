@@ -114,7 +114,7 @@ app.post('/recommend', function (req, res) {
     const artistStr = req.body.artist_str
 
     axios.post(
-        `https://chimeragpt.adventblocks.cc/api/v1/chat/completions`,
+        `https://api.nova-oss.com/v1/chat/completions`,
         {
             model: 'gpt-3.5-turbo',
             messages: [
@@ -131,7 +131,7 @@ app.post('/recommend', function (req, res) {
         {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${process.env.CHIMERA_API_KEY}`
+                Authorization: `Bearer ${process.env.NOVA_API_KEY}`
             }
         }
     ).then((response) => {
