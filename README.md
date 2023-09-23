@@ -4,7 +4,7 @@ An AI-powered Spotify artist recommendation tool using OpenAI model GPT-3.5.
 Visit the site here: https://dysfunctioned.github.io/Sound-Sage-AI/
 
 
-**Instructions** (for use with your own API keys):
+**Instructions** (for local use with your own API keys):
 1. Open two terminals within the Sound-Sage-AI directory.
 
 2. Navigate the first terminal to ```server``` using the command ```cd server```. Download node.js and all of the dependencies listed in ```package.json```, then run ```npm run start``` or ```node server.js``` to start the server.
