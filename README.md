@@ -1,8 +1,6 @@
 ## Sound-Sage-AI
 An AI-powered Spotify artist recommendation tool using OpenAI model GPT-3.5.
 
-Visit the site here: https://dysfunctioned.github.io/Sound-Sage-AI/
-
 
 **Instructions** (for local use with your own API keys):
 1. Open two terminals within the Sound-Sage-AI directory.
