@@ -114,13 +114,13 @@ app.post('/recommend', function (req, res) {
     const artistStr = req.body.artist_str
 
     axios.post(
-        `https://api.nova-oss.com/v1/chat/completions`,
+        `https://api.openai.com/v1/chat/completions`,
         {
             model: 'gpt-3.5-turbo',
             messages: [
                 {
                     "role": "system",
-                    "content": "You are a Spotify artist recommender. User will input a list of artists they listen to. You will respond with a list of recommended artists of similar genres. Your list will be in a format similar to the input. Do not respond with anything other than the contents of the list. Each artist in your list must not be in the user's list. Each artist in your list must appear a maximum of one time."
+                    "content": "You are a Spotify artist recommender. The user will input a list of artists they listen to. You will respond with a list of recommended artists of similar genres. Your list will be in a format similar to the input. Do not respond with anything other than the contents of the list. Each artist in your list must not be in the user's list. Each artist in your list must appear a maximum of one time."
                 },
                 {
                     "role": "user",
@@ -131,7 +131,7 @@ app.post('/recommend', function (req, res) {
         {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${process.env.NOVA_API_KEY}`
+                Authorization: `Bearer ${process.env.OPEN_AI_API_KEY}`
             }
         }
     ).then((response) => {
