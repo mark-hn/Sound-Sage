@@ -8,8 +8,19 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-// const dotenv = require('dotenv');
-// dotenv.config();
+
+// Request loop to keep Render server from going offline
+const pingTimer = setInterval(() => {
+    http.get(`https://sound-sage-ai.onrender.com/ping`, (response) => {
+        console.log('Ping request sent');
+    }).on('error', (error) => {
+        console.error('Error sending ping request:', error.message);
+    });
+}, 600000);
+
+app.get('/ping', (req, res) => {
+    res.send("Server pinged");
+});
 
 
 // Obtain secrets from .env within the server
@@ -170,4 +181,5 @@ app.post('/recommend', function (req, res) {
 })
 
 
+pingTimer();
 app.listen(3001);
