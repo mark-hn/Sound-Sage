@@ -3,7 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const SpotifyWebApi = require('spotify-web-api-node');
 const axios = require('axios');
-const http = require('http');
+const https = require('https');
 
 const app = express();
 app.use(cors());
@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // Request loop to keep Render server from going offline
 setInterval(() => {
-    http.get(`https://sound-sage-ai.onrender.com/ping`, (response) => {
+    https.get(`https://sound-sage-ai.onrender.com/ping`, (response) => {
         console.log('Ping request sent');
     }).on('error', (error) => {
         console.error('Error sending ping request:', error.message);
