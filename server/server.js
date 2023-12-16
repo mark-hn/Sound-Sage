@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 
 
 // Request loop to keep Render server from going offline
-const pingTimer = setInterval(() => {
+setInterval(() => {
     http.get(`https://sound-sage-ai.onrender.com/ping`, (response) => {
         console.log('Ping request sent');
     }).on('error', (error) => {
@@ -181,5 +181,4 @@ app.post('/recommend', function (req, res) {
 })
 
 
-pingTimer();
 app.listen(3001);
