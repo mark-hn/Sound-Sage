@@ -1,4 +1,4 @@
-## Sound-Sage-AI
+## Sound-Sage
 An AI-powered Spotify artist recommendation tool using OpenAI model GPT-3.5.
 
 **Instructions** (for local use with your own API keys):
